@@ -8,13 +8,30 @@
     <script src="https://unpkg.com/vue@3.0.2"></script>
   </head>
   <body>
-    <!-- EXPLANATION: this is the template. Inside it, we can put dynamic data -->
     <div id="app">
-      <!-- EXPLANATION: outputing a variable -->
-      <h2>{{ title }} - {{ author }} - {{ age }}</h2>
-      <!-- EXPLANATION: if we try to output a variable that doesn´t exist it won´t output anything, it will just be left blank
-      <h2>{{ titles }}</h2>-->
+      <!-- EXPLANATION: CONDITIONAL RENDERING.
+        Option 1:  We need to use the directive v-if where we want to conditially rendered sth. The directive will be evaluated to true or false. In the Example below, if the directive is true the whole div will be visible otherwise if it is false the div is not shown. The directive will evaluate in this example the property showBooks, wchich we added to the data function in the js file -->
+      <!-- EXAMPLE:  
+      <div v-if="showBooks">
+        <h2>{{ title }} - {{ author }} - {{ age }}</h2>
+      </div>-->
+      <!-- EXPLANATION: 
+        Option 2:  We can give the user the possibility of toggling from true to false with the click of button. In the example below we add a click event to the btn which will call the toggleShowBooks function, which we added to the methods property in the js file -->
+      <!-- EXAMPLE:  -->
+      <div v-if="showBooks">
+        <h2>{{ title }} - {{ author }} - {{ age }}</h2>
+      </div>
+      <button @click="toggleShowBooks">
+        <!-- EXPLANATION: change the btn depending on whether the books are shown. If showBooks is true show the Hide Books btn, otherwide hide it. And if showBooks is false, show the Show Books btn otherwise hide it. note: in the second button the we can use the directive v-else so that we don´t hace to write showBooks is equal to false  -->
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+      <!-- EXPLANATION: the directive v-show can achieve the same as v-if, the difference is that with v-show the item is not remove from the dom instead the style disply none is added to it. On the other hand, with v-if, the item is completely removed from the dom. The latter is more performace consuming. So, if I have an item that I want to show/hide ofter, like the toggler btn in a nav, it is better to use v-show -->
+      <div v-show="showBooks">currently showing 📑</div>
     </div>
     <script src="app.js"></script>
   </body>
 </html>
+
+<!-- hiding or showing of mobile menu
+     showing log in btn depending of wheter the user is logged in -->
