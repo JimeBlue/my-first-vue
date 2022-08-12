@@ -6,14 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My First View</title>
     <script src="https://unpkg.com/vue@3.0.2"></script>
+    <!-- note: styles for the box mouse event divs -->
+    <style>
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background: #ddd;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
-    <!-- EXPLANATION: this is the template. Inside it, we can put dynamic data -->
     <div id="app">
-      <!-- EXPLANATION: outputing a variable -->
-      <h2>{{ title }} - {{ author }} - {{ age }}</h2>
-      <!-- EXPLANATION: if we try to output a variable that doesn´t exist it won´t output anything, it will just be left blank
-      <h2>{{ titles }}</h2>-->
+      <div v-if="showBooks">
+        <p>{{ title }} - by {{ author }}, {{ age }} years old</p>
+      </div>
+      <div v-else>
+        <p>Click the button below to show books</p>
+      </div>
+
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide books</span>
+        <span v-else>Show books</span>
+      </button>
+
+      <br />
+      <!-- MOUESE EVENTS -->
+      <!-- EXPLANATION: the mouse events are attached to a function which is define the the methods property in the js file-->
+      <!-- EXPLANATION: the $event we´re passing is to make sure that the the arguments we´re passing is not undefined. In the functional itself, we receive two parameters, e and 5, so here beside of the argument we are passing we need to pass $event. Clear explanation: https://www.youtube.com/watch?v=CYPZBK8zUik&t=1s (min: 5) -->
+      <div class="box" @mouseover="handleEvent($event, 5)">
+        mouseover (enter)
+      </div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <!-- note: double click event -->
+      <div class="box" @dblclick="handleEvent">double click me</div>
+      <div class="box" @mousemove="handleMousemove">
+        position {{ x }} {{ y }}
+      </div>
     </div>
     <script src="app.js"></script>
   </body>
