@@ -8,12 +8,22 @@
     <script src="https://unpkg.com/vue@3.0.2"></script>
   </head>
   <body>
-    <!-- EXPLANATION: this is the template. Inside it, we can put dynamic data -->
     <div id="app">
-      <!-- EXPLANATION: outputing a variable -->
       <h2>{{ title }} - {{ author }} - {{ age }}</h2>
-      <!-- EXPLANATION: if we try to output a variable that doesn´t exist it won´t output anything, it will just be left blank
-      <h2>{{ titles }}</h2>-->
+
+      <!-- EXPLANATION: CLICK EVENTS: we create the btn or the element to be clicked and use a directive called v-on + thetype event we want to react to. In this case a click event. The directive will be equal to js code, which will run everytime the user clicks the btn. In this example I want to increase and decrease the age of the user as the btn is clicked. We can write the code to do that inside the template in the html file or inside the component in the js file-->
+      <!-- EXAMPLE: increase and decrese the age variable by 1
+      <button v-on:click="age++">increase age</button>
+      <button v-on:click="age--">decrease age</button>-->
+      <!-- EXPLANATION: we can make anything to react to a click event. We can also use a shortut for the v-on directive, which is @click -->
+      <!-- EXAMPLE: click on the div to change the title 
+      <div @click="title = 'something else'">change title</div>-->
+      <!-- EXPLANATION: calling the function that updates the title, which was written in the js file -->
+      <!-- EXAMPLE:
+      <div @click="changeTitle">change title</div>-->
+      <!-- EXPLANATION: I can also pass arguments when I call the changeTitle function, so that the the title will be update to wheterver argument I´m passing -->
+      <!-- EXAMPLE:-->
+      <div @click="changeTitle('title as an argument')">change title</div>
     </div>
     <script src="app.js"></script>
   </body>
