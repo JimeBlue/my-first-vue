@@ -1,20 +1,49 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My First View</title>
-    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <style>
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background: #ddd;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
-    <!-- EXPLANATION: this is the template. Inside it, we can put dynamic data -->
+    <h1>Hello, Vue :)</h1>
+
     <div id="app">
-      <!-- EXPLANATION: outputing a variable -->
-      <h2>{{ title }} - {{ author }} - {{ age }}</h2>
-      <!-- EXPLANATION: if we try to output a variable that doesn´t exist it won´t output anything, it will just be left blank
-      <h2>{{ titles }}</h2>-->
+      <!-- EXPLANATION:attribute binding - making html attribures dynamic.  -->
+      <!-- EXPLANATION: the directive v-bind: is used to bind a value in the data object to the attribute in html. The directive has the shortcut : -->
+      <!-- EXAMPLE:  -->
+      <a :href="url">Best website ever!</a>
+
+      <div v-if="showBooks">
+        <ul>
+          <li v-for="book in books">
+            <!-- EXAMPLE:  -->
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.author }}</p>
+          </li>
+        </ul>
+      </div>
+      <div v-else>
+        <p>Click the button below to show books</p>
+      </div>
+
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide books</span>
+        <span v-else>Show books</span>
+      </button>
     </div>
+
     <script src="app.js"></script>
   </body>
 </html>
